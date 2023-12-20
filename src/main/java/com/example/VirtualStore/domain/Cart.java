@@ -19,11 +19,11 @@ public class Cart {
   public Float getTotal() {
     return getCartItemList().stream()
         .map(item -> item.getPrice()*item.getQuantity())
-        .reduce(0F, (a, b) -> a+b);
+        .reduce(0F, Float::sum);
   }
   public Long quantityOf(String productCode) {
     return getCartItemList().stream().filter(item -> item.getCode().equals(productCode))
-        .mapToLong(item -> item.getQuantity()).sum();
+        .mapToLong(CartItem::getQuantity).sum();
   }
   public boolean contains(String productCode) {
     return getCartItemList().stream().filter(item -> item.getCode().equals(productCode))
