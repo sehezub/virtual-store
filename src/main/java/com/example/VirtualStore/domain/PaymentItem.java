@@ -13,7 +13,7 @@ public class PaymentItem {
   private Long id;
   private Long quantity;
   private String description;
-  private Float price;
+  private Float price; //unit price
   private String code;
 
   public Float getTotal() {

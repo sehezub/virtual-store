@@ -11,8 +11,12 @@ public class CartItem {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private Long quantity;
+  private Long quantity; //never 0
   private String description;
-  private Float price;
+  private Float price; // unit price
   private String code;
+
+  public Float getTotal() {
+    return quantity * price;
+  }
 }
