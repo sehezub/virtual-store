@@ -1,8 +1,6 @@
 package com.example.VirtualStore;
 
-import com.example.VirtualStore.domain.Cart;
-import com.example.VirtualStore.domain.CartItem;
-import com.example.VirtualStore.domain.Product;
+import com.example.VirtualStore.domain.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.persistence.EntityManager;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -34,6 +33,14 @@ public class VirtualStoreApplicationTests {
 		Cart cart = new Cart();
 		cart.setCartItemList(cartItems);
 		return cart;
+	}
+
+	protected User createUser(Cart cart) {
+		User user = new User();
+		user.setCart(cart);
+		user.setName("xy");
+		user.setPaymentList(new ArrayList<Payment>());
+		return user;
 	}
 
 	protected Product createProduct() {
