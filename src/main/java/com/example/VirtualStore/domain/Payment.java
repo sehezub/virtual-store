@@ -12,8 +12,8 @@ public class Payment {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String maskedCardNumber; //change name
-  private String cardType; //change name
+  private String maskedCardNumber;
+  private String cardType;
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   @JoinColumn(name = "payment_id")
   private List<PaymentItem> paymentItemList = new ArrayList<>();

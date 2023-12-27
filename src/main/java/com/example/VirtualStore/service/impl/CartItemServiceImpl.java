@@ -5,6 +5,7 @@ import com.example.VirtualStore.domain.PaymentItem;
 import com.example.VirtualStore.domain.Product;
 import com.example.VirtualStore.repository.CartItemRepository;
 import com.example.VirtualStore.service.CartItemService;
+import com.example.VirtualStore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class CartItemServiceImpl implements CartItemService {
 
   @Override
   public void setQuantity(Long id, Long quanity) {
-    CartItem cartItem = cartItemRepository.getById(id);
+    CartItem cartItem = getCartItemById(id);
     cartItem.setQuantity(quanity);
     cartItemRepository.save(cartItem);
   }

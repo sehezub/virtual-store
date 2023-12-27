@@ -48,7 +48,7 @@ public class VirtualStoreApplicationTests {
 		product.setName("A");
 		product.setDescription("B");
 		product.setReleaseDate(1L);
-		product.setStock(1L);
+		product.setStock(100L);
 		product.setBrand("C");
 		product.setPrice(1F);
 		product.setCategory("D");

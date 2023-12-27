@@ -9,6 +9,6 @@ public interface CartService {
   public Cart getCartById(Long Id);
   public CartItem addCartItem(Long cartId, Long productId, Long quantity);
   public Cart saveCart(Cart cart);
-  public void removeProduct(Long cartId, Long productId);
+  public void removeProduct(String productCode, Long cartId);
   public Payment generatePayment(PaymentRequest paymentRequest);
 }
