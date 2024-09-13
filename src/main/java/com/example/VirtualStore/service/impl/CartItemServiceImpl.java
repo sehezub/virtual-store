@@ -3,6 +3,7 @@ package com.example.VirtualStore.service.impl;
 import com.example.VirtualStore.domain.CartItem;
 import com.example.VirtualStore.domain.PaymentItem;
 import com.example.VirtualStore.domain.Product;
+import com.example.VirtualStore.exception.ResourceNotInDB;
 import com.example.VirtualStore.repository.CartItemRepository;
 import com.example.VirtualStore.service.CartItemService;
 import com.example.VirtualStore.service.ProductService;
@@ -17,10 +18,8 @@ public class CartItemServiceImpl implements CartItemService {
   @Autowired
   ProductService productService;
   public CartItem getCartItemById(Long id) {
-    CartItem cartItem = cartItemRepository.findById(id).orElse(null);
-    if (cartItem == null) { throw new NoSuchElementException("No cart item with the given id");
-    }
-    return cartItem;
+    return cartItemRepository.findById(id).orElseThrow( () ->
+        new ResourceNotInDB("", "id", id.toString(), "CartItem"));
   }
 
   public CartItem saveCartItem(CartItem cartItem) { return cartItemRepository.save(cartItem); }
@@ -50,6 +49,7 @@ public class CartItemServiceImpl implements CartItemService {
     Product product = productService.getProductById(productId);
     CartItem cartItem = new CartItem();
     cartItem.setQuantity(quantity);
+    cartItem.setProductId(productId);
     cartItem.setCode(product.getCode());
     cartItem.setDescription(product.getDescription());
     cartItem.setPrice(product.getPrice());

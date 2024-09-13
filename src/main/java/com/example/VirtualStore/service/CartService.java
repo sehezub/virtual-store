@@ -11,4 +11,6 @@ public interface CartService {
   public Cart saveCart(Cart cart);
   public void removeProduct(String productCode, Long cartId);
   public Payment generatePayment(PaymentRequest paymentRequest);
+  public void updateCart(Long cartId);
+  //todo change quantity of cart product in cart
 }

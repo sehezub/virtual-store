@@ -3,12 +3,11 @@ package com.example.VirtualStore.service;
 import com.example.VirtualStore.VirtualStoreApplicationTests;
 import com.example.VirtualStore.domain.*;
 import com.example.VirtualStore.dto.PaymentRequest;
-import com.example.VirtualStore.exception.ModifiedProductException;
+import com.example.VirtualStore.exception.ConditionNotMet;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -148,7 +147,7 @@ public class CartServiceTest extends VirtualStoreApplicationTests {
     paymentRequest.setCartId(cart.getId());
     paymentRequest.setUserId(user.getId());
 
-    assertThrows(ModifiedProductException.class, () ->{
+    assertThrows(ConditionNotMet.class, () ->{
       cartService.generatePayment(paymentRequest);
     });
   }

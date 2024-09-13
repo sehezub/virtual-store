@@ -15,6 +15,7 @@ public class CartItem {
   private String description;
   private Float price; // unit price
   private String code;
+  private Long productId;
 
   public Float getTotal() {
     return quantity * price;

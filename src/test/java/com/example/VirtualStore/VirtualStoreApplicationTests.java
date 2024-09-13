@@ -1,24 +1,32 @@
 package com.example.VirtualStore;
 
 import com.example.VirtualStore.domain.*;
+import com.example.VirtualStore.dto.Mapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.web.servlet.MockMvc;
 
 import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
-public class VirtualStoreApplicationTests {
+@AutoConfigureMockMvc
+public abstract class VirtualStoreApplicationTests {
+	@Autowired
+	protected MockMvc mockMvc;
 	@Autowired
 	protected JdbcTemplate jdbcTemplate;
 	@Autowired
 	protected EntityManager entityManager;
 	@Autowired
 	protected ObjectMapper objectMapper;
+	@Autowired
+	protected Mapper mapper;
 
 	protected CartItem createCartItem(Product product, Long quantity) {
 		CartItem cartItem = new CartItem();
@@ -59,7 +67,7 @@ public class VirtualStoreApplicationTests {
 	}
 
 	protected void saveEntity(Object entity) {
-		entityManager.persist(entity);
-		entityManager.flush();
+		entityManager.persist(entity); //puts the entity in the persistence context
 	}
+
 }
